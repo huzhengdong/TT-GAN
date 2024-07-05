@@ -16,3 +16,4 @@ python3 ttgan -e 10000
 
 ## Evaluation.py
 The tt-gan are compared with the basic gan, t-gan and ray-tracing.
+![delay](delay_spread.jpg)
