@@ -6,15 +6,15 @@ load('../result/coeff_10000_maxPD.mat') %3GPP
 maxDelay0 = maxDelay; 
 maxP0 = maxP;
 
-load('../new_result/coeff_10000_maxPD_path15_new_config_eoa2.mat') %gan
+load('../result/coeff_10000_maxPD_path15_new_config_eoa2.mat') %gan
 maxDelay1 = maxDelay; 
 maxP1 = maxP;
 
-load('../twc_result/coeff_maxPD_corridor_new.mat') %ray-tracing
+load('../result/coeff_maxPD_corridor_new.mat') %ray-tracing
 maxDelay2 = maxDelay;
 maxP2 = maxP;
 
-load('../new_result/new_coeff_21_maxPD.mat') %% measurement
+load('../result/new_coeff_21_maxPD.mat') %% measurement
 maxDelay3 = maxDelay*1e-9;
 maxP3 = maxP;
 
@@ -24,11 +24,11 @@ load('../result/coeff_rx_position_21.mat')
 dis1 = dis*31;  %% real measurement
 
 
-load('../new_result/coeff_rx_position_path15_new_config_eoa2.mat')
+load('../result/coeff_rx_position_path15_new_config_eoa2.mat')
 dis2 = dis;     %% 3GPP
 
 
-load('../new_result/coeff_rx_position_corridor.mat')
+load('../result/coeff_rx_position_corridor.mat')
 dis3 = dis;     %% ray_tracing
 
 
@@ -38,26 +38,26 @@ dis4 = dis;
 
 
 %% TGAN and TTGAN generated channel
-load('../twc_result/d1_10000e_tgan_generator_scale_180_l2norm_before_transfer_twc_eoa2.mat','channel') %T-GAN
+load('../result/d1_10000e_tgan_generator_scale_180_l2norm_before_transfer_twc_eoa2.mat','channel') %T-GAN
 channel1 = channel;
 
-load('../twc_result/d1_10000e_tgan_generator_scale_180_l2norm_after_transfer_twc_eoa2_01.mat','channel') %TT-GAN
+load('../result/d1_10000e_tgan_generator_scale_180_l2norm_after_transfer_twc_eoa2_01.mat','channel') %TT-GAN
 channel2 = channel;
 
 
 
 % raytracing channel
-load('../twc_result/coeff_corridor_ray_trace_new.mat')
+load('../result/coeff_corridor_ray_trace_new.mat')
 H1 = H;
 
 
 % benchmark GAN generated channel
-load('../twc_result/bench_tgan_generator_10000e_coeff_latent=32_r.mat','channel')
+load('../result/bench_tgan_generator_10000e_coeff_latent=32_r.mat','channel')
 H2 = channel;
 
 
 % real channel
-load('../new_result/new_coeff_real_channel_21.mat')
+load('../result/new_coeff_real_channel_21.mat') %%not provided measurement
 H3 = H;
 
 
