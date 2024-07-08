@@ -3,15 +3,15 @@ load('../result/coeff_10000_maxPD.mat') %3GPP
 maxDelay0 = maxDelay; 
 maxP0 = maxP;
 
-load('../new_result/coeff_10000_maxPD_path15_new_config_eoa2.mat') %gan
+load('../result/coeff_10000_maxPD_path15_new_config_eoa2.mat') %gan
 maxDelay1 = maxDelay; 
 maxP1 = maxP;
 
-load('../twc_result/coeff_maxPD_corridor_new.mat') %ray-tracing
+load('../result/coeff_maxPD_corridor_new.mat') %ray-tracing
 maxDelay2 = maxDelay;
 maxP2 = maxP;
 
-load('../new_result/new_coeff_21_maxPD.mat') %% measurement
+load('../result/new_coeff_21_maxPD.mat') %% measurement
 maxDelay3 = maxDelay*1e-9;
 maxP3 = maxP;
 
@@ -21,53 +21,47 @@ load('../result/coeff_rx_position_21.mat')
 dis1 = dis*31;  %% real measurement
 
 
-load('../new_result/coeff_rx_position_path15_new_config_eoa2.mat')
+load('../result/coeff_rx_position_path15_new_config_eoa2.mat')
 dis2 = dis;     %% 3GPP
 
 
-load('../new_result/coeff_rx_position_corridor.mat')
+load('../result/coeff_rx_position_corridor.mat')
 dis3 = dis;     %% ray_tracing
 
 
-load('../result/coeff_rx_position_10000.mat') %% 3Gpp original
+load('../result/coeff_rx_position_10000.mat') %% 3Gpp position
 dis4 = dis;
 
 fc=315e9;
 c=3e8;
 
-%% GAN generated channel
-%load('../twc_result/d1_10000e_tgan_generator_scale_180_l2norm_before_transfer_twc_eoa2.mat','channel') %T-GAN
+%% TGAN generated channel
 load('../new_result/before_tgan_generator_real21_coeff.mat')
-%channel1 = channel;
-%load('../twc_result/bench_tgan_generator_10000e_coeff_latent=32_r.mat')
-%load('../twc_result/bench1_coeff_10000.mat')
 channel1 = channel;
 
-%load('../twc_result/d1_10000e_tgan_generator_scale_180_l2norm_after_transfer_twc_eoa2_01.mat','channel') %TT-GAN
+%% TTGAN generated channel
 load('../new_result/after_tgan_generator_real21_coeff_l2norm_scale_180')
 channel2 = channel;
 
 
 
 % raytracing channel
-load('../twc_result/coeff_corridor_ray_trace_new.mat')
+load('../result/coeff_corridor_ray_trace_new.mat')
 H1 = H;
 
 % 3GPP Genereated Channel by LOS_1
 % load('../result/coeff_10000.mat')
 % H2 = H;
-%load('../new_result/coeff_10000_path15_new_config_eoa2.mat')
+%load('../result/coeff_10000_path15_new_config_eoa2.mat')
 %H2 = H;
 
 % benchmark generated channel
-load('../twc_result/bench_tgan_generator_10000e_coeff_latent=32_r.mat','channel')
-%load('../twc_result/bench1_coeff_10000.mat','channel')
+load('../result/bench_tgan_generator_10000e_coeff_latent=32_r.mat','channel')
 H2 = channel;
 
 
-% real channel
-%load('../twc_result/new_coeff_real_channel_21_scale_180.mat')
-load('../new_result/new_coeff_real_channel_21.mat')
+% real channel not provided
+load('../result/new_coeff_real_channel_21.mat')
 H3 = H;
 
 
@@ -77,7 +71,7 @@ H3 = H;
 
 
 % for real channel
-H3(:,:,1) = 10.^((H3(:,:,1)-1)*maxP3/20); %for testing real channel, H(:,:,1)-1 otherwise -H(:,:,1）
+H3(:,:,1) = 10.^((H3(:,:,1)-1)*maxP3/20); 
 H3(:,:,2) = H3(:,:,2)*360;
 H3(:,:,3) = H3(:,:,3)*maxDelay3;
 H3(:,:,4) = H3(:,:,4)*360;
@@ -108,10 +102,10 @@ end
 
 
 
-% GAN Generated channel
+% TGAN Generated channel
 
 
-channel1(:,:,1) = 10.^((channel1(:,:,1)-1)*maxP1/20); %before transfering T-GAN
+channel1(:,:,1) = 10.^((channel1(:,:,1)-1)*maxP1/20); 
 channel1(:,:,2) = channel1(:,:,2)*360;
 channel1(:,:,3) = channel1(:,:,3)*maxDelay1;
 channel1(:,:,4) = channel1(:,:,4)*360;
@@ -120,7 +114,7 @@ channel1(:,:,4) = channel1(:,:,4)*360;
 
 
 
-
+% TTGAN Generated channel
 
 channel2(:,:,1) = 10.^((channel2(:,:,1)-1)*maxP3/20); %after transfering TT-GAN
 channel2(:,:,2) = channel2(:,:,2)*360;
