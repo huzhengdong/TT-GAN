@@ -1,19 +1,20 @@
 fc=315e9;
 c=3e8;
+
 %% Normalization Factor
 load('../result/coeff_10000_maxPD.mat') %3GPP
 maxDelay0 = maxDelay; 
 maxP0 = maxP;
 
-load('../new_result/coeff_10000_maxPD_path15_new_config_eoa2.mat') %gan
+load('../result/coeff_10000_maxPD_path15_new_config_eoa2.mat') %gan
 maxDelay1 = maxDelay; 
 maxP1 = maxP;
 
-load('../twc_result/coeff_maxPD_corridor_new.mat') %ray-tracing
+load('../result/coeff_maxPD_corridor_new.mat') %ray-tracing
 maxDelay2 = maxDelay;
 maxP2 = maxP;
 
-load('../new_result/new_coeff_21_maxPD.mat') %% measurement
+load('../result/new_coeff_21_maxPD.mat') %% measurement
 maxDelay3 = maxDelay*1e-9;
 maxP3 = maxP;
 
@@ -23,11 +24,11 @@ load('../result/coeff_rx_position_21.mat')
 dis1 = dis*31;  %% real measurement
 
 
-load('../new_result/coeff_rx_position_path15_new_config_eoa2.mat')
+load('../result/coeff_rx_position_path15_new_config_eoa2.mat')
 dis2 = dis;     %% 3GPP
 
 
-load('../new_result/coeff_rx_position_corridor.mat')
+load('../result/coeff_rx_position_corridor.mat')
 dis3 = dis;     %% ray_tracing
 
 
@@ -36,11 +37,12 @@ dis4 = dis;
 
 
 
-%% GAN generated channel
-load('../new_result/before_tgan_generator_real21_coeff.mat')
+%% TGAN generated channel
+load('../result/before_tgan_generator_real21_coeff.mat')
 channel1 = channel;
 
-load('../new_result/after_tgan_generator_real21_coeff_l2norm_scale_180')
+% TTGAN generated channel
+load('../result/after_tgan_generator_real21_coeff_l2norm_scale_180.mat')
 channel2 = channel;
 
 
@@ -51,12 +53,11 @@ H1 = H;
 
 
 % GAN generated channel
-%load('../twc_result/bench_tgan_generator_10000e_coeff_latent=32_r.mat','channel')
-load('../twc_result/bench1_coeff_10000.mat','channel')
+load('../result/bench1_coeff_10000.mat','channel')
 H2 = channel;
 
 
-% real channel
+% real channel not provided
 load('../new_result/new_coeff_real_channel_21.mat')
 H3 = H;
 
@@ -67,7 +68,7 @@ H3 = H;
 
 
 % for real channel
-H3(:,:,1) = 10.^((H3(:,:,1)-1)*maxP3/20); %for testing real channel, H(:,:,1)-1 otherwise -H(:,:,1）
+H3(:,:,1) = 10.^((H3(:,:,1)-1)*maxP3/20); 
 H3(:,:,2) = H3(:,:,2)*360;
 H3(:,:,3) = H3(:,:,3)*maxDelay3;
 H3(:,:,4) = H3(:,:,4)*360;
