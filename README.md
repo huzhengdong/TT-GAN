@@ -11,6 +11,6 @@ matlab coeff_generation_3gpp.m
 The T-GAN and TT-GAN are implemented in transformer-gan.py and ttgan.py respectively. The ttgan.py is fine-tuned on the pre-trained tgan models. The number of epochs is set as 10000
 
 
-## Evaluation.py
+## Evaluation
 The tt-gan are compared with the basic gan, t-gan and ray-tracing.
 ![delay](delay_spread.jpg)
