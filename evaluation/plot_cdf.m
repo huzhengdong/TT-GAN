@@ -106,7 +106,7 @@ channel1(:,:,3) = channel1(:,:,3)*maxDelay1;
 channel1(:,:,4) = channel1(:,:,4)*360;
 
 
-% TGAN Generated channel
+% TT-GAN Generated channel
 channel2(:,:,1) = 10.^((channel2(:,:,1)-1)*maxP3/20); 
 channel2(:,:,2) = channel2(:,:,2)*360;
 channel2(:,:,3) = channel2(:,:,3)*maxDelay3;
