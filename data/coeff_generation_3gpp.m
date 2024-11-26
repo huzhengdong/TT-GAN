@@ -68,9 +68,9 @@ maxEoa = 2*pi;
 
 
 H(:,:,1) = mod(1-H(:,:,1)/maxP,1);  % amplitude
-H(:,:,2) = mod((H(:,:,2)+360),360)/360; % phase
+H(:,:,2) = mod((H(:,:,2)+360),360)/360; % eoa angle
 H(:,:,3) = H(:,:,3)/maxDelay;  % delay
-H(:,:,4) = mod((H(:,:,4)+360),360)/360; % angle
+H(:,:,4) = mod((H(:,:,4)+360),360)/360; % aoa angle
 
 
 
